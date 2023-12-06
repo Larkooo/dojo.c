@@ -295,6 +295,7 @@ pub unsafe extern "C" fn account_new(
         url::Url::parse(&unsafe { (*client).rpc_url.clone() }).unwrap(),
     ));
 
+    // should we use the client runtime here?
     let chain_id = (*client).runtime.block_on(rpc.chain_id()).unwrap();
 
     let account = SingleOwnerAccount::new(
@@ -418,3 +419,4 @@ pub unsafe extern "C" fn string_free(string: *mut c_char) {
 }
 
 // TODO: free keys clause
+// TODO: free starknet-rs bindings related types
