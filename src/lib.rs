@@ -299,6 +299,7 @@ pub unsafe extern "C" fn account_new(
 
     let account = SingleOwnerAccount::new(
         rpc,
+        // is this ok?
         (*signer).0.to_owned(),
         address,
         chain_id,
@@ -320,6 +321,8 @@ pub unsafe extern "C" fn account_chain_id(account: *mut Account) -> types::Field
     (&(*account).0.chain_id()).into()
 }
 
+// TODO: does torii client has the addresses of our cotnracts? 
+// maybe use by name
 #[no_mangle]
 #[allow(clippy::missing_safety_doc)]
 pub unsafe extern "C" fn account_execute_raw(
